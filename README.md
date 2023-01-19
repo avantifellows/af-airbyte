@@ -23,7 +23,8 @@ d. Connect to EC2 instance.
 ## 2. Start Airbyte
 
 ```
-docker compose up -d
+cd airbyte
+docker-compose up -d
 ```
 
 Visit http://localhost:8000 to verify the deployment.
