@@ -18,7 +18,7 @@ c. Allow key to have permissions.
 
 d. Connect to EC2 instance.
 
-`ssh -i $SSH_KEY ec2-user@$INSTANCE_IP`
+`ssh -i $SSH_KEY ubuntu@$INSTANCE_IP`
 
 ## 2. Start Airbyte
 
