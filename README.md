@@ -4,21 +4,12 @@
 
 ### 1. Connect to EC2 instance:
 
-a. Store the file path of the key downloaded to connect to Avanti's EC2 instance.
-
-`SSH_KEY=**********.pem`
-
-b. Store the IP address of the EC2 instance.
-
-`INSTANCE_IP=REPLACE_WITH_AVANTI_INSTANCE_IP`
-
-c. Allow key to have permissions.
-
-`chmod 400 $SSH_KEY`
-
-d. Connect to EC2 instance.
-
-`ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP`
+```
+SSH_KEY=**********.pem // file path of the key downloaded to connect to Avanti's EC2 instance.
+INSTANCE_IP=REPLACE_WITH_AVANTI_INSTANCE_IP
+chmod 400 $SSH_KEY //allow key to have permissions.
+ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP
+```
 
 Visit http://localhost:8000 to verify the deployment.
 
@@ -26,21 +17,12 @@ Visit http://localhost:8000 to verify the deployment.
 
 ### 1. Connect to EC2 instance:
 
-a. Store the file path of the key downloaded to connect to your EC2 instance.
-
-`SSH_KEY=**********.pem`
-
-b. Store the IP address of the EC2 instance.
-
-`INSTANCE_IP=REPLACE_WITH_YOUR_INSTANCE_IP`
-
-c. Allow key to have permissions.
-
-`chmod 400 $SSH_KEY`
-
-d. Connect to EC2 instance.
-
-`ssh -i $SSH_KEY ubuntu@$INSTANCE_IP`
+```
+SSH_KEY=**********.pem // file path of the key downloaded to connect to your EC2 instance.
+INSTANCE_IP=REPLACE_WITH_YOUR_INSTANCE_IP
+chmod 400 $SSH_KEY //allow key to have permissions.
+ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP
+```
 
 ### 2. To install Docker, run the following command in your SSH session on the instance terminal:
 
