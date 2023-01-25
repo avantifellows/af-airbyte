@@ -13,6 +13,8 @@ ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP
 
 Visit http://localhost:8000 to verify the deployment.
 
+### 2. Enter Avant's username and password.
+
 ## Set up own instance on EC2
 
 ### 1. Connect to EC2 instance:
