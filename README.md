@@ -55,3 +55,12 @@ ssh -i $SSH_KEY -L 8000:localhost:8000 -N -f ec2-user@$INSTANCE_IP
 ```
 
 Visit http://localhost:8000 to verify the deployment.
+
+### 6. You will be asked for a username and password. By default, that's username `airbyte` and password `password`. Once you deploy airbyte to your servers, be sure to change these in your environment's .env file:
+
+```
+
+    # Set to empty values, e.g. "" to disable basic auth
+    BASIC_AUTH_USERNAME=your_new_username_here
+    BASIC_AUTH_PASSWORD=your_new_password_here
+```
