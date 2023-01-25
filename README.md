@@ -50,8 +50,6 @@ docker compose up -d # run the Docker container
 
 ### 5. Create an SSH tunnel for port 8000:
 
-If you want to use different ports, modify API_URL in your .env file and restart Airbyte. Run the following commands in your workstation terminal from the downloaded key folder:
-
 ```
 ssh -i $SSH_KEY -L 8000:localhost:8000 -N -f ec2-user@$INSTANCE_IP
 ```
