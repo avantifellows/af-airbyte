@@ -1,10 +1,32 @@
 # Data flow using Airbyte
 
-This repository contains code to set up Airbyte.
+## Connect to Avanti's Airbyte
 
-## 1. Connect to EC2 instance:
+### 1. Connect to EC2 instance:
 
-a. Store the file path of the key downloaded to connect to EC2 instance.
+a. Store the file path of the key downloaded to connect to Avanti's EC2 instance.
+
+`SSH_KEY=**********.pem`
+
+b. Store the IP address of the EC2 instance.
+
+`INSTANCE_IP=REPLACE_WITH_AVANTI_INSTANCE_IP`
+
+c. Allow key to have permissions.
+
+`chmod 400 $SSH_KEY`
+
+d. Connect to EC2 instance.
+
+`ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP`
+
+Visit http://localhost:8000 to verify the deployment.
+
+## Set up own instance on EC2
+
+### 1. Connect to EC2 instance:
+
+a. Store the file path of the key downloaded to connect to your EC2 instance.
 
 `SSH_KEY=**********.pem`
 
@@ -18,13 +40,38 @@ c. Allow key to have permissions.
 
 d. Connect to EC2 instance.
 
-`ssh -i $SSH_KEY -L 8000:localhost:8000 ubuntu@$INSTANCE_IP`
+`ssh -i $SSH_KEY ubuntu@$INSTANCE_IP`
 
-## 2. Start Airbyte
+### 2. To install Docker, run the following command in your SSH session on the instance terminal:
 
 ```
-cd airbyte
-docker-compose up -d
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -a -G docker $USER
+```
+
+### 3. To install docker-compose, run the following command in your ssh session on the instance terminal:
+
+```
+sudo yum install -y docker-compose-plugin
+docker compose version
+```
+
+### 4. Install Airbyte
+
+```
+mkdir airbyte && cd airbyte
+wget https://raw.githubusercontent.com/airbytehq/airbyte/master/{.env,docker-compose.yaml}
+docker compose up -d # run the Docker container
+```
+
+### 5. Create an SSH tunnel for port 8000:
+
+If you want to use different ports, modify API_URL in your .env file and restart Airbyte. Run the following commands in your workstation terminal from the downloaded key folder:
+
+```
+ssh -i $SSH_KEY -L 8000:localhost:8000 -N -f ec2-user@$INSTANCE_IP
 ```
 
 Visit http://localhost:8000 to verify the deployment.
